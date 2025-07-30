@@ -14,7 +14,7 @@ export const usePayStore = defineStore('pay', () => {
   // Funções
   async function createPixQrCode() {
     try {
-      const response = await axios.post('http://localhost:3000/api/pix', {
+      const response = await axios.post('pay/api/pix', {
         amount: Number(cartStore.cartItems.total_amount) * 100,
         expiresIn: 36000,
         description: 'Pagamento com abacatepay',
@@ -35,7 +35,7 @@ export const usePayStore = defineStore('pay', () => {
   async function simulatePayment() {
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/pixQrCode/simulate-payment?id=${payData.value.data.id}`,
+        `pay/api/pixQrCode/simulate-payment?id=${payData.value.data.id}`,
         {
           metadata: {},
         },

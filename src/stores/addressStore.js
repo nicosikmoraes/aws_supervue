@@ -68,7 +68,7 @@ export const useAddressStore = defineStore('address', () => {
   async function createAddress() {
     try {
       const response = await axios.post(
-        'http://35.196.79.227:8000/addresses/',
+        '/back/addresses/',
         {
           street: street.value,
           number: number.value,
@@ -95,7 +95,7 @@ export const useAddressStore = defineStore('address', () => {
 
   async function getAddresses() {
     try {
-      const response = await axios.get('http://35.196.79.227:8000/addresses/', {
+      const response = await axios.get('/back/addresses/', {
         headers: {
           accept: 'application/json',
           Authorization: `Bearer ${userStore.userMe.token}`,
@@ -117,7 +117,7 @@ export const useAddressStore = defineStore('address', () => {
 
   async function deleteAddress(id) {
     try {
-      const response = await axios.delete(`http://35.196.79.227:8000/addresses/${id}`, {
+      const response = await axios.delete(`/back/addresses/${id}`, {
         headers: {
           accept: '*/*',
           Authorization: `Bearer ${userStore.userMe.token}`,

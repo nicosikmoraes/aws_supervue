@@ -25,7 +25,7 @@ export const useUserStore = defineStore(
 
     //Caminho padrão da API
     const api = axios.create({
-      baseURL: 'http://35.196.79.227:8000',
+      baseURL: '/back',
     })
 
     // Funções
