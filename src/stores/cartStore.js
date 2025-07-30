@@ -24,7 +24,7 @@ export const useCartStore = defineStore('cart', () => {
   // Função para criar um novo carrinho, Vai ser chamado quando o usuário se registrar!
   async function createCart() {
     try {
-      const response = await api.post('/cart', null, {
+      const response = await api.post('/cart/', null, {
         headers: {
           accept: 'application/json',
           Authorization: `Bearer ${userStore.userMe.token}`,
