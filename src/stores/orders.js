@@ -109,7 +109,7 @@ export const useOrdersStore = defineStore('orders', () => {
           headers: {
             accept: 'application/json',
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${userStore.stockToken}`,
+            Authorization: `Bearer ${userStore.userMe.token}`,
           },
         },
       )
