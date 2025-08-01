@@ -59,4 +59,10 @@ watch(
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 1000;
 }
+
+@media (max-width: 424px) {
+  .offcanvas {
+    width: 100%;
+  }
+}
 </style>

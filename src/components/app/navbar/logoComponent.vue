@@ -77,7 +77,15 @@ const showCanvas = computed(() => route.path === '/')
 @media (max-width: 600px) {
   #title_logo {
     font-size: 22px;
-    margin-left: 10px;
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 424px) {
+  #title_logo {
+    margin-left: -12px;
+    font-size: 19px;
+    margin-right: 12px;
   }
 }
 </style>

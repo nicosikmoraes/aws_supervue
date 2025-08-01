@@ -60,4 +60,10 @@ h2 {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* drop-shadow-md */
   margin-top: -2px;
 }
+
+@media (max-width: 424px) {
+  h2 {
+    font-size: 16.5px;
+  }
+}
 </style>

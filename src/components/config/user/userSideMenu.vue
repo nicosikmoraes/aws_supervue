@@ -23,4 +23,10 @@ h2 {
 h2:hover {
   transform: scale(1.1);
 }
+
+@media (max-width: 424px) {
+  h2 {
+    font-size: 14.5px;
+  }
+}
 </style>

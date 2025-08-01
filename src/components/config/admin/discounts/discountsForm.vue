@@ -350,4 +350,10 @@ input:focus {
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.1);
   opacity: 1;
 }
+
+@media (max-width: 424px) {
+  p {
+    font-size: 13.5px;
+  }
+}
 </style>

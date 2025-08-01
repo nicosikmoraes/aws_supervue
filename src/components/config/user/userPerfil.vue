@@ -117,6 +117,8 @@ async function handleFile(event) {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow-y: auto;
+  height: 55vh;
 }
 
 .img_container {
@@ -238,6 +240,12 @@ img {
 
   .custom-file-upload {
     width: 95%;
+  }
+}
+
+@media (max-width: 424px) {
+  .custom-file-upload {
+    font-size: 14px;
   }
 }
 </style>
