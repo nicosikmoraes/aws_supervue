@@ -50,7 +50,7 @@ export const useOrdersStore = defineStore('orders', () => {
       const response = await api.get('/orders/all/144', {
         headers: {
           accept: 'application/json',
-          Authorization: `Bearer ${userStore.stockToken}`,
+          Authorization: `Bearer ${userStore.userMe.token}`,
         },
       })
 
