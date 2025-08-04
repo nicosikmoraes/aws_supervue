@@ -6,10 +6,15 @@ import { useAlertStore } from './alertasStore'
 
 export const useCartStore = defineStore('cart', () => {
   // Variáveis
+
+  // Stores
   const userStore = useUserStore()
+  const alertStore = useAlertStore()
+
+  // Cart
   const canvasCart = ref(false)
   const cartItems = ref([])
-  const alertStore = useAlertStore()
+ 
 
   // 0 = Tela do carrinho, 1 = Opção de endereços, 2 = adicionar endereço se preciso, 3 = Tela de pagamento
   const showPage = ref(0)
@@ -38,7 +43,9 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  async function addItemToCart(id, price) {
+  async function addItemToCart(id, price) { // Adiciona um produto ao carrinho
+
+    // Garante que o usuário esteja logado
     if (!userStore.userMe.token) {
       alertStore.errorAlert('Faça login para adicionar produtos ao carrinho!')
     }
@@ -74,7 +81,7 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  async function updateCartItemQuantity(id, newQuantity) {
+  async function updateCartItemQuantity(id, newQuantity) { // Atualiza a quantidade de um produto no carrinho
     newQuantity++
     try {
       const response = await api.put(
@@ -100,7 +107,7 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  async function getCartItems() {
+  async function getCartItems() { // Busca todos os itens do carrinho
     try {
       const res = await api.get('/cart/items', {
         headers: {
@@ -117,7 +124,7 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  async function removeItemFromCart(id, quantity) {
+  async function removeItemFromCart(id, quantity) { // Remove um produto do carrinho
     if (quantity > 1) {
       quantity = quantity - 2
       await updateCartItemQuantity(id, quantity)
@@ -143,7 +150,7 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  async function checkCep(cep) {
+  async function checkCep(cep) { // Verifica se o CEP é válido
     try {
       const res = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
 
@@ -159,7 +166,7 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  async function clearCart() {
+  async function clearCart() {  // Limpa o carrinho
     try {
       const response = await api.delete('/cart/clear', {
         headers: {

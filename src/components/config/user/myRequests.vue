@@ -92,6 +92,7 @@ function formatDate(date) {
   return dayjs(date).format('DD/MM HH:mm')
 }
 
+// Cada um desse é responsável por cada bolinha, definindo se deve estar marcada ou não.
 const statusClassOne = (status) => {
   switch (status) {
     case 'PENDING':
@@ -154,7 +155,7 @@ const statusClassFour = (status) => {
 </script>
 
 <style scoped>
-/* Container */
+/*==================================== Container ==========================================*/
 .my_requests_container {
   padding: 20px 50px;
   display: flex;
@@ -165,7 +166,7 @@ const statusClassFour = (status) => {
   overflow-x: auto;
 }
 
-/* Titulo */
+/*==================================== Titulo ==========================================*/
 h1 {
   font-size: clamp(17px, 20px, 24px);
   color: #b5d985;
@@ -179,7 +180,7 @@ h1 {
   opacity: 1;
 }
 
-/* Top Info */
+/*==================================== Top Info ==========================================*/
 .top_info {
   display: flex;
   gap: 10px;
@@ -226,7 +227,7 @@ h1 {
   justify-content: center;
 }
 
-/* Bolinhas */
+/*==================================== Bolinhas ==========================================*/
 .bottom_info {
   display: flex;
   gap: 20px;
@@ -319,7 +320,7 @@ hr {
   font-weight: 800;
 }
 
-/* Responsividade */
+/*==================================== Responsividade ==========================================*/
 @media (max-width: 600px) {
   .my_requests_container {
     padding: 20px 20px;

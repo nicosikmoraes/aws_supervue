@@ -5,11 +5,12 @@ export const useLandingStore = defineStore('landing', () => {
   // Variáveis
   const filtersName = ref([])
 
-  //const landingProducts = ref([])
+  //const landingProducts = ref([]) - Variáveis da paginação
   const landingProducts = ref(Array.from({ length: 50 }, (_, i) => `Item ${i + 1}`))
   const currentPage = ref(1)
   const itemsPerPage = ref(8)
 
+  // Loading
   const loadingProducts = ref(false)
 
   const totalPages = computed(() => Math.ceil(landingProducts.value.length / itemsPerPage.value))

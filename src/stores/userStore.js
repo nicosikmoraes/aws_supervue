@@ -31,7 +31,7 @@ export const useUserStore = defineStore(
     // Funções
 
     //Função para criar usuário (REGISTER)
-    async function createUser(user) {
+    async function createUser(user) { // Criar um novo usuário
       try {
         const res = await api.post(
           '/register',
@@ -48,9 +48,9 @@ export const useUserStore = defineStore(
           },
         )
 
-        await login(user)
+        await login(user) // Já loga o usuário quando a conta é criada
 
-        await cartStore.createCart()
+        await cartStore.createCart() // Cria um carrinho
 
         return res.data
       } catch (err) {

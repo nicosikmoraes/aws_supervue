@@ -93,7 +93,7 @@ export const useAdminStore = defineStore('admin', () => {
     }
   }
 
-  async function getCategories() {
+  async function getCategories() { // Buscar todas as categorias
     try {
       const res = await api.get(`/categories/user/144`, {
         headers: {
@@ -116,7 +116,7 @@ export const useAdminStore = defineStore('admin', () => {
     }
   }
 
-  async function deleteCategory(id) {
+  async function deleteCategory(id) { // Deletar uma categoria
     try {
       const response = await api.delete(`/categories/${id}`, {
         headers: {
@@ -133,16 +133,17 @@ export const useAdminStore = defineStore('admin', () => {
     }
   }
 
-  async function createProduct(data) {
+  async function createProduct(data) {  // Criar um novo produto
     try {
       //Formatando os dados
       const formData = new FormData()
 
+      // Formata os dados
       formData.append('name', data.name)
       formData.append('price', data.price)
       formData.append('stock', data.stock)
 
-      if (!idSelected.value) {
+      if (!idSelected.value) { // Se não tiver nenhuma categoria selecionada, retorna um erro
         throw new Error('Nenhuma categoria selecionada')
       }
 
@@ -173,7 +174,9 @@ export const useAdminStore = defineStore('admin', () => {
     }
   }
 
-  async function updateProduct(data) {
+  async function updateProduct(data) { // Atualizar um produto
+    
+    // Só muda a imagem se for adicionada uma nova
     if (
       data.imageFile !==
       products.value.find((product) => product.id === idProductSelected.value).image_path
@@ -182,7 +185,7 @@ export const useAdminStore = defineStore('admin', () => {
       await updateImg(data.imageFile)
     }
 
-    await updateStock(data.stock)
+    await updateStock(data.stock) // Atualiza o estoque
 
     try {
       const response = await api.put(
@@ -209,7 +212,7 @@ export const useAdminStore = defineStore('admin', () => {
     }
   }
 
-  async function updateStock(stock) {
+  async function updateStock(stock) { //Atualiza o estoque do produto
     try {
       const response = await api.put(
         `/products/${idProductSelected.value}/stock`,
@@ -232,7 +235,7 @@ export const useAdminStore = defineStore('admin', () => {
     }
   }
 
-  async function updateImg(imageFile) {
+  async function updateImg(imageFile) { //Atualiza a imagem do produto
     try {
       const formData = new FormData()
       formData.append('image', imageFile)
@@ -252,7 +255,7 @@ export const useAdminStore = defineStore('admin', () => {
     }
   }
 
-  async function getAllProducts() {
+  async function getAllProducts() {  // Busca todos os produtos
     try {
       const res = await api.get(`/products/user/144`, {
         headers: {
@@ -262,6 +265,7 @@ export const useAdminStore = defineStore('admin', () => {
         },
       })
 
+      // Adiciona descontos caso necessário
       const hoverProducts = res.data.map((product) => {
         const price = Number(product.price) || 0
         const discountsArray = Array.isArray(product.discounts) ? product.discounts : []
@@ -301,7 +305,7 @@ export const useAdminStore = defineStore('admin', () => {
     }
   }
 
-  async function getCategoryProducts() {
+  async function getCategoryProducts() {  // Busco as categorias do produto
     try {
       const res = await api.get(`/products/category/${idSelected.value}`, {
         headers: {
@@ -319,7 +323,7 @@ export const useAdminStore = defineStore('admin', () => {
     }
   }
 
-  async function deleteProduct(id) {
+  async function deleteProduct(id) {  // Deleta um produto
     try {
       const res = await api.delete(`/products/${id}`, {
         headers: {
@@ -349,6 +353,7 @@ export const useAdminStore = defineStore('admin', () => {
       )
     }
 
+    // Ordena os produtos por ordem alfabética
     landingStore.landingProducts = [...filtered.value].sort((a, b) =>
       a.name.localeCompare(b.name, 'pt-BR', { sensitivity: 'base' }),
     )

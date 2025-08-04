@@ -20,7 +20,7 @@ export const useOrdersStore = defineStore('orders', () => {
   })
 
   // Funções
-  async function createOrder() {
+  async function createOrder() {  // Criar um novo pedido
     try {
       const response = await api.post(
         '/orders/',
@@ -45,7 +45,7 @@ export const useOrdersStore = defineStore('orders', () => {
     }
   }
 
-  async function getAllOrders() {
+  async function getAllOrders() { // Buscar todos os pedidos
     try {
       const response = await api.get('/orders/all/144', {
         headers: {
@@ -69,7 +69,7 @@ export const useOrdersStore = defineStore('orders', () => {
     }
   }
 
-  async function getMyOrders() {
+  async function getMyOrders() {  // Buscar os pedidos do usuário
     try {
       const response = await api.get('/orders/', {
         headers: {
@@ -93,7 +93,7 @@ export const useOrdersStore = defineStore('orders', () => {
     }
   }
 
-  async function updateStatus(id, newStatus) {
+  async function updateStatus(id, newStatus) {  // Atualizar o status do pedido
     if (newStatus === 'CANCELED') {
       await deleteOrder(id)
       return null
@@ -114,7 +114,7 @@ export const useOrdersStore = defineStore('orders', () => {
         },
       )
 
-      await getAllOrders()
+      await getAllOrders() // Atualiza os pedidos
       return response.data
     } catch (error) {
       console.error('Erro ao atualizar status do pedido:', error)
@@ -122,7 +122,7 @@ export const useOrdersStore = defineStore('orders', () => {
     }
   }
 
-  async function deleteOrder(id) {
+  async function deleteOrder(id) { // Deletar um pedido
     try {
       const response = await api.delete(`/orders/${id}`, {
         headers: {

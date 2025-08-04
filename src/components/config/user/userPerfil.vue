@@ -47,10 +47,16 @@ import Spinner from '@/components/form/spinner.vue'
 import { useAlertStore } from '@/stores/alertasStore'
 
 //Variáveis
+
+// Stores
 const userStore = useUserStore()
 const alertStore = useAlertStore()
+
+// Info
 const name = ref('')
 const email = ref('')
+
+// Loading
 const loadingName = ref(false)
 const loadingEmail = ref(false)
 const loadingImage = ref(false)
@@ -111,7 +117,7 @@ async function handleFile(event) {
 </script>
 
 <style scoped>
-/* Container */
+/*==================================== Container ==========================================*/
 .perfil_container {
   padding: 20px 50px;
   display: flex;
@@ -129,14 +135,14 @@ async function handleFile(event) {
   width: 50%;
 }
 
-/* Titulo */
+/*==================================== Titulo ==========================================*/
 h1 {
   font-size: clamp(17px, 20px, 24px);
   color: #b5d985;
   font-weight: 800;
 }
 
-/* Input */
+/*==================================== Input ==========================================*/
 .inp {
   width: 75%;
   height: 40px;
@@ -173,7 +179,7 @@ h1 {
   opacity: 1;
 }
 
-/* Input Text */
+/*==================================== Input Text ==========================================*/
 .inp_text {
   color: #b5d985;
   font-size: 16px;
@@ -181,7 +187,7 @@ h1 {
   margin-left: 2px;
 }
 
-/* Button */
+/*==================================== Button ==========================================*/
 .btn {
   background-color: #b5d985;
   border: 1px solid #b5d985;
@@ -204,7 +210,7 @@ h1 {
   display: flex;
 }
 
-/* Imagem */
+/*==================================== Imagem ==========================================*/
 .img {
   height: 100px;
   width: 100px;
@@ -222,7 +228,7 @@ img {
   border-radius: 200px;
 }
 
-/* Responsividade */
+/*==================================== Responsividade ==========================================*/
 @media (max-width: 600px) {
   .perfil_container {
     padding: 20px 20px;

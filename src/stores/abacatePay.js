@@ -5,6 +5,8 @@ import { useCartStore } from './cartStore'
 
 export const usePayStore = defineStore('pay', () => {
   // Variáveis
+
+  // Stores
   const cartStore = useCartStore()
 
   const abacateToken = ref('abc_dev_rRMxM25fNhmmGWyPhQATN45d')
@@ -12,7 +14,7 @@ export const usePayStore = defineStore('pay', () => {
   const qrCode = ref('')
 
   // Funções
-  async function createPixQrCode() {
+  async function createPixQrCode() {  // Criar o QRCode
     try {
       const response = await axios.post('pay/api/pix', {
         amount: Number(cartStore.cartItems.total_amount) * 100,
@@ -22,7 +24,6 @@ export const usePayStore = defineStore('pay', () => {
 
       qrCode.value = response.data.qrCode
       payData.value = response.data
-      console.log(response.data)
 
       // Retorna o QRCode gerado
       return response.data.qrCode
@@ -32,7 +33,7 @@ export const usePayStore = defineStore('pay', () => {
     }
   }
 
-  async function simulatePayment() {
+  async function simulatePayment() { // Simular o pagamento
     try {
       const response = await axios.post(
         `pay/api/pixQrCode/simulate-payment?id=${payData.value.data.id}`,

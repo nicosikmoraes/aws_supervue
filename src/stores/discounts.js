@@ -9,9 +9,11 @@ export const useDiscountStore = defineStore('discounts', () => {
   const userStore = useUserStore()
   const adminStore = useAdminStore()
 
+  // Cupons
   const coupons = ref([])
   const coupon_id = ref(null)
 
+  // Descontos
   const discounts = ref([])
 
   //Caminho padrão da API
@@ -20,7 +22,7 @@ export const useDiscountStore = defineStore('discounts', () => {
   })
 
   // Funções
-  async function createCupom(data) {
+  async function createCupom(data) {  // Criar um cupom
     try {
       const response = await api.post(
         '/coupons/',
@@ -72,7 +74,7 @@ export const useDiscountStore = defineStore('discounts', () => {
     }
   }
 
-  async function deleteCoupon(id) {
+  async function deleteCoupon(id) { // Deletar um cupom
     try {
       const response = await api.delete(`/coupons/${id}`, {
         headers: {
@@ -90,7 +92,7 @@ export const useDiscountStore = defineStore('discounts', () => {
 
   //===================================== DESCONTOS ========================================
 
-  async function createDiscount(data) {
+  async function createDiscount(data) { // Criar um desconto
     try {
       const response = await api.post(
         '/discounts/',
@@ -117,7 +119,7 @@ export const useDiscountStore = defineStore('discounts', () => {
     }
   }
 
-  async function getMyDiscounts() {
+  async function getMyDiscounts() { // Busco os descontos
     try {
       const response = await api.get('/discounts/', {
         headers: {
@@ -126,6 +128,7 @@ export const useDiscountStore = defineStore('discounts', () => {
         },
       })
 
+      // Filtra os descontos que são do SuperVUE
       const filteredDiscounts = response.data.filter(
         (discounts) => discounts.description === 'SuperVUE',
       )
@@ -148,13 +151,13 @@ export const useDiscountStore = defineStore('discounts', () => {
     }
   }
 
-  const deleteDiscount = async (id) => {
+  const deleteDiscount = async (id) => { // Deleta um desconto
     try {
       const response = await axios.delete(`http://35.196.79.227:8000/discounts/${id}`, {
         headers: {
           accept: '*/*',
           Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNDQiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3NTM0MTgwMjV9.1xnWoPwvBAy_ivfC_0Gv5Pp2WMnNvWPcCYEFvgKxZ5Q',
+            `Bearer ${userStore.userMe.token}` ,
         },
       })
     } catch (error) {

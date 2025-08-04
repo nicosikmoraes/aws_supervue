@@ -7,29 +7,35 @@ export const useAddressStore = defineStore('address', () => {
   // Variáveis
   const userStore = useUserStore()
 
+  // País
   const countries = ref([])
   const selectedCountry = ref('BR')
 
+  // Estado
   const states = ref([])
   const selectedState = ref('')
   const stateSign = ref('')
 
+  // Cidades 
   const cities = ref([])
   const selectedCity = ref('')
 
+  //Rua
   const street = ref('')
   const number = ref(null)
 
+  // CEP
   const cep = ref('')
 
   const addresses = ref([])
   const selectedAddress = ref([])
   // Funções
 
-  async function getCountries() {
+  async function getCountries() { // Pega todos os países
     try {
       const response = await axios.get('https://restcountries.com/v3.1/all?fields=name,cca2')
 
+      // Ordena os países em ordem alfabética
       countries.value = response.data.sort((a, b) => a.name.common.localeCompare(b.name.common))
     } catch (err) {
       console.error('Erro ao obter países:', err.response?.data || err.message)
@@ -37,12 +43,13 @@ export const useAddressStore = defineStore('address', () => {
     }
   }
 
-  async function getBrazilianStates() {
+  async function getBrazilianStates() { // Pega os estados brasileiros
     try {
       const response = await axios.get(
         'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
       )
 
+      // Ordena os estados em ordem alfabética
       states.value = response.data.sort((a, b) => a.nome.localeCompare(b.nome))
 
       return response.data
@@ -52,12 +59,13 @@ export const useAddressStore = defineStore('address', () => {
     }
   }
 
-  async function getCitiesByState(state) {
+  async function getCitiesByState(state) { // Pega as cidades por estado
     try {
       const response = await axios.get(
         `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/municipios`,
       )
 
+      // Ordena as cidades em ordem alfabética
       cities.value = response.data.sort((a, b) => a.nome.localeCompare(b.nome))
     } catch (err) {
       console.error('Erro ao obter cidades:', err.response?.data || err.message)
@@ -65,7 +73,7 @@ export const useAddressStore = defineStore('address', () => {
     }
   }
 
-  async function createAddress() {
+  async function createAddress() { // Cria um novo endereço
     try {
       const response = await axios.post(
         '/back/addresses/',
@@ -93,7 +101,7 @@ export const useAddressStore = defineStore('address', () => {
     }
   }
 
-  async function getAddresses() {
+  async function getAddresses() {  // Pega todos os endereços
     try {
       const response = await axios.get('/back/addresses/', {
         headers: {
@@ -115,7 +123,7 @@ export const useAddressStore = defineStore('address', () => {
     }
   }
 
-  async function deleteAddress(id) {
+  async function deleteAddress(id) { // Deleta um endereço
     try {
       const response = await axios.delete(`/back/addresses/${id}`, {
         headers: {
@@ -124,7 +132,7 @@ export const useAddressStore = defineStore('address', () => {
         },
       })
 
-      await getAddresses()
+      await getAddresses() // Atualiza os endereços
       return response.data
     } catch (err) {
       console.error('Erro ao deletar endereço:', err.response?.data || err.message)
