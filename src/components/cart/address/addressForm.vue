@@ -244,7 +244,7 @@ select {
 
 select:hover {
   transform: scale(1.02);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
 }
 
 select:focus {
@@ -352,8 +352,6 @@ p {
 .street:focus,
 .street:hover {
   outline: none;
-  transform: scale(1.02);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 #street_name {
@@ -384,8 +382,6 @@ p {
 .custom-select .multiselect__tags:hover,
 .custom-select .multiselect__tags:focus {
   outline: none;
-  transform: scale(1.02);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .custom-select .multiselect__option--highlight {
@@ -411,8 +407,6 @@ p {
 .inp_cep:focus,
 .inp_cep:hover {
   outline: none;
-  transform: scale(1.02);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Button */

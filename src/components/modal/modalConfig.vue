@@ -59,7 +59,7 @@ function goToMenu() {
   color: white;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 4px 16px #969696;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
 }
 
 .btn {
